@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style rel="stylesheet" href="style.css"></style>
-    <script href="script.js" defer></script>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="to-do-create" id="to-do-create">
-        <header>
-            <h1>Welcome to your To-Do list</h1>
-            <h2>Here are your current To-Dos</h2>
-        </header>
-        <button onclick="sort()"> Sort By ID </button>
-        <form>
-            <laber for="taskCreate">Task: </laber>
-            <input type="text" name="taskCreate">
-            <input type="submit" value="Submit">
+    <div class="container">
+        <h1>Task Manager</h1>
+        
+        <form id="taskForm">
+            <input type="text" id="taskInput" placeholder="Enter new task" required>
+            <input type="submit" value="Add Task">
         </form>
-        <table class="to-do-table" id="to-do-table">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Options</th>
-            </tr>
+
+        <button id="filterCompletedButton">Filter by Completed Tasks</button>
+
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
-    </div>
-    <div class="to-do-edit" id="to-do-edit">
-        <h2>Edit Task</h2>
-        <input type="text" name="taskEdit">
-        <div class="confirm-cancel">
-            <button onclick="edit()"> Confirm </button>
-            <button onclick="cancel()"> Cancel </button>
+
+        <div id="editPopup" class="popup">
+            <div class="popup-content">
+                <h2>Edit Task</h2>
+                <input type="text" id="editInput">
+                <div class="popup-buttons">
+                    <button id="saveEditButton">Save</button>
+                    <button id="cancelEditButton">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
