@@ -1,9 +1,12 @@
+// Retrieve tasks from local storage or initialize as an empty array
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+// Generate a unique ID for each task
 function generateId() {
     return Math.random().toString(36).substr(2, 9);
 }
 
+// Render tasks in the table
 function renderTasks(filteredTasks = tasks) {
     const tbody = document.querySelector('#taskTable tbody');
     tbody.innerHTML = '';
@@ -25,6 +28,7 @@ function renderTasks(filteredTasks = tasks) {
     });
 }
 
+// Add a new task
 function addTask(event) {
     event.preventDefault();
     const input = document.getElementById('taskInput');
@@ -39,6 +43,7 @@ function addTask(event) {
     input.value = '';
 }
 
+// Toggle the completion status of a task
 function toggleCompletion(id) {
     const task = tasks.find(t => t.id === id);
     task.isCompleted = !task.isCompleted;
@@ -46,6 +51,7 @@ function toggleCompletion(id) {
     renderTasks();
 }
 
+// Open the edit popup and set up handlers for save/cancel
 function openEditPopup(id) {
     const task = tasks.find(t => t.id === id);
     const editInput = document.getElementById('editInput');
@@ -64,18 +70,22 @@ function openEditPopup(id) {
     };
 }
 
+// Remove a task from the list
 function removeTask(id) {
     tasks = tasks.filter(t => t.id !== id);
     saveTasks();
     renderTasks();
 }
 
+// Save tasks to local storage
 function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+// Event listener for the form submission
 document.getElementById('taskForm').addEventListener('submit', addTask);
 
+// Event listener for the filter button
 document.getElementById('filterCompletedButton').addEventListener('click', function() {
     const completedTasks = tasks.filter(task => task.isCompleted);
     renderTasks(completedTasks);
